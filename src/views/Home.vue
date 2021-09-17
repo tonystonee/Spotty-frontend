@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <button @click="start">start</button>
-
+    <button v-if="loggedIn" @click="start">start</button>
+    <button v-else @click="login ">Connect your Spotify</button>
     <p v-if="status !== 200">{{ statusText }}</p>
   </div>
 </template>
@@ -14,18 +14,23 @@ export default {
   name: "Home",
   data() {
     return {
+      // host: "http://spotty-env.eba-hiwn3fbm.us-east-1.elasticbeanstalk.com",
+      host: "http://localhost:3000",
       status: 200,
       statusText: "",
     };
   },
   computed: {
     ...mapGetters(["access_token", "refresh_token"]),
+    loggedIn() {
+      return !!this.access_token;
+    },
   },
   methods: {
     async $_get_playback_state() {
       let pkg;
       try {
-        pkg = await axios.get("http://spotty-env.eba-hiwn3fbm.us-east-1.elasticbeanstalk.com/player?access_token=" + this.access_token, {
+        pkg = await axios.get(`${this.host}/player?access_token=${this.access_token}`,   {
             crossDomain: true,
         });
       } catch (xhr) {
@@ -37,6 +42,9 @@ export default {
       this.statusText = pkg.statusText;
       console.log('adfd')
       console.log(pkg); 
+    },
+    login() {
+      window.location.replace(`${this.host}/login`);
     },
     start() {
       this.$_get_playback_state();
