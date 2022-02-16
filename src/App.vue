@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app color="white">
     <v-main>
       <!-- Provides the application the proper gutter -->
       <v-container fluid>

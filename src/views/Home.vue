@@ -1,5 +1,7 @@
 <template>
   <div class="home">
+    <h1>Spotify Power Hour</h1>
+
     <div>
       <v-btn large v-if="playing" @click="stop">STOP</v-btn>
       <v-btn large v-if="loggedIn && !playing" @click="start">start</v-btn>
