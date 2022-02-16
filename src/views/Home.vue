@@ -40,11 +40,10 @@ export default {
   },
   data() {
     return {
-      // host: "http://spotty-env.eba-hiwn3fbm.us-east-1.elasticbeanstalk.com",
       count: 0,
       deviceStatus: false,
-      host: "http://localhost:3000",
-      seconds: 5,
+      host: process.env.VUE_APP_ROOT_API,
+      seconds: process.env.SECONDS,
       status: 200,
       statusText: "",
       showMessage: false,
@@ -88,7 +87,7 @@ export default {
       this.percentageTimer = setInterval(increasePerentage, 50);
 
       async function next() {
-        if (self.count === 3) {
+        if (self.count === process.env.CAP) {
           self.stop();
           return;
         }
