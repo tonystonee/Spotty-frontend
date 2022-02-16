@@ -15,6 +15,7 @@
       <p>{{this.playing ? 'Playing' : 'Not Playing'}}</p>
     </div>
 
+    <greeting v-if="loggedIn"></greeting>
     <message :dialog="showMessage" @closeDialog="start"></message>
 
   </div>
@@ -24,7 +25,9 @@
 // @ is an alias to /src
 import axios from "axios";
 import { mapGetters } from "vuex";
+import Greeting from '../components/Greeting.vue';
 import Message from '../components/Message.vue';
+
 
 export default {
   name: "Home",
@@ -50,6 +53,7 @@ export default {
     };
   },
   components: {
+    Greeting,
     Message,
   },
   computed: {
