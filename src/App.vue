@@ -1,6 +1,11 @@
 <template>
   <v-app color="white">
     <v-main>
+      <v-app-bar
+        elevation="4"
+      >
+        Spotify Power Hour
+     </v-app-bar>
       <!-- Provides the application the proper gutter -->
       <v-container fluid>
         <!-- If using vue-router -->
