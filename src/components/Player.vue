@@ -1,10 +1,19 @@
 <template>
 <div>
+    <v-alert
+      v-if="playing"
+      border="bottom"
+      colored-border
+      type="warning"
+      elevation="2"
+    >
+      Closing the browser will kill the app.
+    </v-alert>
+
     <v-btn large v-if="playing" @click="stop">STOP</v-btn>
     <v-btn large v-if="loggedIn && !playing" @click="start">start</v-btn>
     <p>{{count}}</p>
 
-    <p v-if="status !== 200">{{ statusText }}</p>
     <h2>Status:</h2>
     <v-progress-linear v-if="playing" :value="percentage"></v-progress-linear>
     <p>{{this.playing ? 'Playing' : 'Not Playing'}}</p>
@@ -29,13 +38,12 @@ export default {
   data() {
     return {
       count: 0,
-      deviceStatus: false,
       host: process.env.VUE_APP_ROOT_API,
       seconds: process.env.VUE_APP_SECONDS,
-      status: 200,
-      statusText: "",
       showMessage: false,
       playing: false,
+
+      // Timer
       percentageTimer: null,
       timer: null,
       percentage: 0,
