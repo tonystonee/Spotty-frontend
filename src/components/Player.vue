@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="white--text">
     <v-alert
       v-if="playing"
       border="bottom"
@@ -9,13 +9,14 @@
     >
       Closing the browser will kill the app.
     </v-alert>
-
-    <v-btn large v-if="playing" @click="stop">STOP</v-btn>
-    <v-btn large v-if="loggedIn && !playing" @click="start">start</v-btn>
+    <div class="my-10">
+      <v-btn large v-if="playing" @click="stop">STOP</v-btn>
+      <v-btn large v-if="loggedIn && !playing" @click="start">start</v-btn>
+    </div>
     <p>{{count}}</p>
 
     <h2>Status:</h2>
-    <v-progress-linear v-if="playing" :value="percentage"></v-progress-linear>
+    <song-progress v-if="playing" :seconds="seconds"></song-progress>
     <p>{{this.playing ? 'Playing' : 'Not Playing'}}</p>
 
     <message :dialog="showMessage" @closeDialog="start"></message>
@@ -26,6 +27,7 @@
 import axios from "axios";
 import { mapGetters } from "vuex";
 import Message from '../components/Message.vue';
+import SongProgress from '../components/SongProgress.vue';
 export default {
   name: "Player",
   created() {
@@ -42,13 +44,14 @@ export default {
       playing: false,
 
       // Timer
-      percentageTimer: null,
+      // percentageTimer: null,
       timer: null,
       percentage: 0,
     };
   },
   components: {
     Message,
+    SongProgress,
   },
   computed: {
     ...mapGetters(["access_token", "refresh_token"]),
@@ -77,7 +80,6 @@ export default {
       const self = this;
 
       this.timer = setInterval(next, this.seconds * 1000);
-      this.percentageTimer = setInterval(increasePerentage, 50);
 
       async function next() {
         if (self.count >= process.env.VUE_APP_CAP) {
@@ -97,16 +99,7 @@ export default {
         }
         self.status = pkg.status;
         self.count++;
-        console.log('next: ', pkg);
       };
-
-      function increasePerentage() {
-        if (self.percentage >= 100) {
-          self.percentage = 0;
-        } else {
-          self.percentage += 1;
-        }
-      }
     },
     async $_previous() {
       let pkg;
@@ -144,7 +137,7 @@ export default {
     },
     stop() {
       clearInterval(this.timer);
-      clearInterval(this.percentageTimer);
+      // clearInterval(this.percentageTimer);
       this.count = 0;
       this.playing = false;
       this.percentage = 0;
