@@ -4,7 +4,7 @@
       <v-app-bar
         elevation="4"
       >
-        Spotify Power Hour
+        <v-toolbar-title>Spotify Power Hour</v-toolbar-title>
      </v-app-bar>
       <!-- Provides the application the proper gutter -->
       <v-container fluid>

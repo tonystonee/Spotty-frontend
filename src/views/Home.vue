@@ -1,15 +1,21 @@
 <template>
   <div class="home">
-    <v-btn large v-if="!loggedIn" @click="login" color="purple">Login with Spotify</v-btn>
+    <v-btn large v-if="!loggedIn" @click="login" color="green">Login with Spotify</v-btn>
 
     <player v-else></player>
+
+    <v-container>
+      <instructions></instructions>
+    </v-container>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import { mapGetters } from "vuex";
+import Instructions from '@/components/Instructions.vue';
 import Player from "@/components/Player.vue";
+
 export default {
   name: "Home",
   computed: {
@@ -19,6 +25,7 @@ export default {
     },
   },
   components: {
+    Instructions,
     Player,
   },
   methods: {
