@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <v-btn large v-if="!loggedIn" @click="login" color="green">Login with Spotify</v-btn>
+    <v-btn class="mt-10" large v-if="!loggedIn" @click="login" color="green">Login with Spotify</v-btn>
 
     <player v-else></player>
 

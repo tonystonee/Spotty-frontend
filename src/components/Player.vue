@@ -18,7 +18,6 @@
     <v-progress-linear v-if="playing" :value="percentage"></v-progress-linear>
     <p>{{this.playing ? 'Playing' : 'Not Playing'}}</p>
 
-    <greeting v-if="loggedIn"></greeting>
     <message :dialog="showMessage" @closeDialog="start"></message>
 </div>
 </template>
@@ -26,7 +25,6 @@
 <script>
 import axios from "axios";
 import { mapGetters } from "vuex";
-import Greeting from '../components/Greeting.vue';
 import Message from '../components/Message.vue';
 export default {
   name: "Player",
@@ -50,7 +48,6 @@ export default {
     };
   },
   components: {
-    Greeting,
     Message,
   },
   computed: {
