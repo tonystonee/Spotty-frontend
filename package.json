@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "deploy": "aws --profile anthony-bot s3 sync ./dist s3://www.powerhour.click --delete"
+    "deploy": "aws --profile anthony-bot s3 sync ./dist s3://www.spotifypowerhour.com --delete"
   },
   "dependencies": {
     "axios": "^0.25.0",
