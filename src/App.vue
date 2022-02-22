@@ -1,11 +1,9 @@
 <template>
   <v-app color="white">
     <v-main>
-      <v-app-bar
-        elevation="4"
-      >
-        <v-toolbar-title>Spotify Power Hour</v-toolbar-title>
-     </v-app-bar>
+      <v-app-bar elevation="4">
+        <v-toolbar-title><b>Spotify</b> Power Hour</v-toolbar-title>
+      </v-app-bar>
       <!-- Provides the application the proper gutter -->
       <v-container fluid>
         <!-- If using vue-router -->
