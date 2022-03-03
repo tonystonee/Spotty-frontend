@@ -9,14 +9,16 @@
     >
       Closing the browser will kill the app.
     </v-alert>
+
     <div class="my-10">
       <v-btn large v-if="playing" @click="stop">STOP</v-btn>
       <v-btn large v-if="loggedIn && !playing" @click="start">start</v-btn>
     </div>
-    <p>{{count}}</p>
+
+    <p class="headline">{{count}}</p>
 
     <h2>Status:</h2>
-    <song-progress v-if="playing" :seconds="seconds"></song-progress>
+      <song-progress v-if="playing" :seconds="seconds"></song-progress>
     <p>{{this.playing ? 'Playing' : 'Not Playing'}}</p>
 
     <message :dialog="showMessage" @closeDialog="start"></message>
